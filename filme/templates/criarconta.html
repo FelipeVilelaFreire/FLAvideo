@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}
+Criar Conta
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Custom styles for Django Crispy Forms fields */
+    #div_id_username input,
+    #div_id_email input,
+    #div_id_password1 input,
+    #div_id_password2 input {
+        background-color: rgba(17, 24, 39, 0.5);
+        color: #f3f4f6;
+        border: 1px solid #4b5563;
+        border-radius: 0.5rem;
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    /* Red focus effect for inputs */
+    #div_id_username input:focus,
+    #div_id_email input:focus,
+    #div_id_password1 input:focus,
+    #div_id_password2 input:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        border-color: #ef4444;
+        box-shadow: 0 0 0 2px #ef4444;
+    }
+
+    /* Style for the labels - REVERTED TO WHITE/LIGHT-GRAY */
+    #div_id_username label,
+    #div_id_email label,
+    #div_id_password1 label,
+    #div_id_password2 label {
+        color: #d1d5db; /* text-gray-300 */
+        font-weight: 500;
+    }
+
+    /* Style for help texts ("Required...", password constraints) - ADDED AS REQUESTED */
+    .help-block, .form-text, .helptext {
+        color: #fca5a5; /* text-red-300 */
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.375rem;
+        font-size: 0.875rem; /* 14px */
+        display: inline-block;
+        margin-top: 0.25rem;
+        font-style: italic;
+    }
+</style>
+
+<main class="relative py-24 sm:py-32 bg-no-repeat bg-cover bg-center" style="background-image: url('{% static 'imagens/torcida_background.jpg' %}');">
+    <div class="absolute inset-0 bg-black/70" aria-hidden="true"></div>
+
+    <div class="relative z-10 w-full max-w-2xl mx-auto px-4 sm:px-0">
+        <div class="bg-black/80 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl shadow-red-500/20 px-8 py-10 md:px-12 md:py-12 transition-all duration-300 hover:shadow-red-500/40">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                    Crie sua Conta
+                </h1>
+                <p class="text-gray-300 mt-2 text-lg">Junte-se à Nação e aproveite o melhor conteúdo.</p>
+            </div>
+
+            <form method="post" class="mt-8 space-y-6">
+                {% csrf_token %}
+
+                <fieldset>
+                    {{ form|crispy }}
+                </fieldset>
+
+                <div>
+                    <button class="w-full px-4 py-3 font-semibold text-white bg-red-600 rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-red-500 transform transition-transform duration-200 hover:scale-105 active:scale-95" type="submit">
+                        Criar Conta
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-6 text-center text-sm text-gray-300">
+                <span>Já tem uma conta?</span>
+                <a href="{% url 'filme:login' %}" class="font-medium text-red-500 hover:text-red-400 hover:underline transition-colors duration-200">
+                    Faça o login
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-black border-t border-gray-800/50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-y-4 md:gap-y-0 text-center">
+            <p class="text-sm text-gray-400">© {% now "Y" %} FlaTV. Todos os direitos reservados.</p>
+            <p class="text-sm text-gray-500">Uma plataforma para torcedores.</p>
+            <p class="text-sm text-gray-400">Feito com Python (Django) & TailwindCSS</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}

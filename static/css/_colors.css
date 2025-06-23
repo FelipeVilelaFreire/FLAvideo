@@ -1,0 +1,68 @@
+/* ===============================================================
+   _colors.css - Variáveis de Cores Globais
+   =============================================================== */
+:root {
+    /* Cores Primárias e de Fundo */
+    --color-background-primary: #000;
+    --color-background-secondary: #141414;
+    --color-gradient-dark-start: #0a0a0a;
+    --color-gradient-dark-end: #1a1a1a;
+    --color-header-gradient-start: rgba(0, 0, 0, 0.7);
+    --color-header-gradient-end: rgba(0, 0, 0, 0);
+    --color-header-scrolled-bg: #141414;
+    --color-content-section-bg: rgba(12, 12, 13, 0.5);
+    --color-episode-card-bg: #1c1c1c;
+    --color-episode-card-border: #2a2a2a;
+    --color-feature-border: #374151; /* Antigo gray-700 */
+    --color-search-bg: #18181b;
+
+    /* Cores de Texto */
+    --color-text-primary: #f5f5f5;
+    --color-text-secondary: #e5e7eb;
+    --color-text-light: #ffffff;
+    --color-text-medium: #d1d5db;
+    --color-text-dark: #9ca3af;
+    --color-placeholder-text: #71717a;
+    --color-search-input-text: #f4f4f5;
+    --color-error-text: #e50914; /* Cor do erro, baseada no vermelho da marca */
+
+    /* Cores da Marca (Vermelho) */
+    --color-brand-red: #ef4444;
+    --color-brand-red-light: #f87171;
+    --color-brand-red-dark: #b91c1c;
+    --color-brand-red-hover: #dc2626;
+
+    /* Cores de Suporte e Efeitos */
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-transparent: transparent;
+    --color-overlay-dark: rgba(0, 0, 0, 0.2);
+    --color-overlay-medium: rgba(0, 0, 0, 0.4);
+    --color-overlay-light: rgba(0, 0, 0, 0.6);
+    --color-overlay-darker: rgba(0, 0, 0, 0.7);
+    --color-overlay-darkest: rgba(0, 0, 0, 0.9);
+    --color-episode-card-gradient: linear-gradient(45deg, var(--color-white), var(--color-brand-red));
+    --color-search-border: #4b4b52; /* Antigo #4b4b52 */
+
+    /* Sombras e Text Shadows */
+    --shadow-subtle: rgba(0, 0, 0, 0.1); /* Antigo 0 2px 4px rgba(0, 0, 0, 0.1) ou 0 4px 6px rgba(0, 0, 0, 0.2) */
+    --shadow-medium: rgba(0, 0, 0, 0.2); /* Antigo 0 4px 6px rgba(0, 0, 0, 0.2) */
+    --shadow-strong: rgba(0, 0, 0, 0.3); /* Antigo 0 6px 12px rgba(0, 0, 0, 0.3) */
+    --shadow-card-hover: rgba(0, 0, 0, 0.5); /* Antigo 0 12px 24px rgba(0, 0, 0, 0.5) */
+    --shadow-card-3d: rgba(0, 0, 0, 0.5); /* Antigo 0 25px 40px -15px rgba(0, 0, 0, 0.5) */
+    --shadow-header: rgba(0, 0, 0, 0.2); /* Antigo 0 5px 25px -3px rgba(0, 0, 0, 0.2) */
+    --shadow-search-glow: rgba(239, 68, 68, 0.3);
+    --shadow-email-button: rgba(0, 0, 0, 0.1);
+
+    --text-shadow-light: rgba(0, 0, 0, 0.3);
+    --text-shadow-medium: rgba(0, 0, 0, 0.8);
+    --text-shadow-dark: rgba(0, 0, 0, 0.9);
+    --text-shadow-hover: rgba(255, 255, 255, 0.5);
+    --text-shadow-card-hover-dark: rgba(0, 0, 0, 1);
+    --text-shadow-card-hover-light: rgba(0, 0, 0, 0.7);
+
+    /* Outros */
+    --header-border-color: rgba(255, 255, 255, 0.08);
+}
+
+

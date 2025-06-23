@@ -1,0 +1,20 @@
+
+
+#Logout
+    -Criar um sistema de login e criar conta(video youtube)
+
+#Criar sua conta
+    - Check-list quando fizer a senha
+
+# Homefilmes
+    - Adicionar imagem em forma de quadrado em categoria de popular (quando fizer um hover a imagem ira expandir)
+    - Adicionar melhor momento jogador
+
+# Detalhesfilmes
+    - Adicionar seletores de tipos de rodadas da competicao
+
+
+
+
+
+

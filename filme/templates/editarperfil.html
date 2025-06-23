@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}
+Editar Perfil
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/editarperfil.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<main class="main-content">
+    <div class="overlay"></div>
+
+    <div class="container">
+        <div class="card">
+            <h2 class="title">Olá, {{ user.username }}</h2>
+            <div class="user-info">
+                <p>{{ user.first_name }} {{ user.last_name }}</p>
+            </div>
+
+            <form method="post" class="form">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="form-legend">Edite os campos abaixo para editar seu perfil</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="button-container">
+                    <button class="submit-button" type="submit">Editar Perfil</button>
+                </div>
+            </form>
+
+            <p class="password-link">
+                <a href="{% url 'filme:mudarsenha' %}" class="link">Quer mudar sua senha?</a>
+            </p>
+        </div>
+    </div>
+</main>
+
+
+
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-text-group">
+            <p class="footer-text">© {% now "Y" %} FlaTV. Todos os direitos reservados.</p>
+            <p class="footer-text">Uma plataforma para torcedores.</p>
+            <p class="footer-text">Feito com Python (Django) & CSS Puro</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}

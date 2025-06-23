@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}pagina-inicial{% endblock %}
+
+{% block titulo %}
+    {{ object.titulo }}
+{% endblock %}]
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/detalhes_filme.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <main class="main-container">
+
+
+        <!-- TITULO -->
+
+        <section class="hero-section" style="background-image: url('{{ object.thumb.url}}');">
+            <div class="hero-content">
+                <h2 class="hero-title">{{ object.titulo}}</h2>
+                </p>
+                <p class="description-text"> {{ object.descricao }} <br>
+                    <span class="views-count">Visualizações : {{ object.visualizacoes }}</span>
+                </p>
+                <div class="hero-actions">
+                    <a href="/">
+                        <button class="play-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+                                <path d="M0 0h24v24H0V0z" fill="none"/>
+                                <path d="M8 5v14l11-7L8 5z"/>
+                            </svg>
+                            <span class="play-button-text">Play</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- JOGOS -->
+
+        <section class="content-section">
+        <div class="content-wrapper">
+            <div class="episodes-container">
+                <div class="section-title-container">
+                    <h2 class="section-title">Jogos</h2>
+                    <div class="select-box">
+                            <!--
+                            <div class="select-container">
+                                <select id="rodada" name="rodada" onchange="filtrarEpisodios()">
+                                    <option value="">- Todos -</option>
+                                    {% for episodio in object.episodios.all %}
+                                    <option value="{{ episodio.fases }}">{{ episodio.fases }}</option>
+                                    {% endfor %}
+                                </select>
+                                <ion-icon name="caret-down-outline" class="arrow_down"></ion-icon>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="episodes-list">
+                    {% for episodio in object.episodios.all %}
+                    <div class="episode-card">
+                        <div class="thumbnail-wrapper">
+                            <img src="{{ episodio.thumb.url }}" alt="{{ episodio.titulo }}"
+                                 class="episode-thumbnail"
+                                 data-video-id="video-{{ episodio.id }}">
+                            <div class="button-play">▶</div>
+                        </div>
+
+                        <div class="episode-card-content">
+                            <h3 class="episode-title">{{ episodio.titulo }}</h3>
+                            <p class="episode-description">{{ episodio.descricao }}</p>
+                            <div class="video-buttons">
+                              <button class="btn-like" aria-label="Curtir">
+                                <i class="fa-regular fa-thumbs-up"></i>
+                              </button>
+
+                              <button class="btn-dislike" aria-label="Não curtir">
+                                <i class="fa-regular fa-thumbs-down"></i>
+                              </button>
+
+                              <button class="btn-heart" aria-label="Favoritar">
+                                <i class="fa-regular fa-heart"></i>
+                              </button>
+                              <h3>{{ episodio.visualizacoes }} Visualizacoes </h3>
+                            </div>
+
+                            {% if episodio.video %}
+                            <video id="video-{{ episodio.id }}" class="video-player w-full rounded mt-4"
+                                   style="display: none;" controls> <source src="{{ episodio.video.url }}" type="video/mp4">
+                            </video>
+                            {% else %}
+                            <p class="text-gray-500 italic">Vídeo não disponível.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- RELACIONADOS -->
+         {% if filmes_relacionados|length > 0 %}
+        <section class="content-section">
+        <div class="content-wrapper">
+            <h2 class="related-title">Relacionados</h2>
+            <div class="related-movies-grid">
+                {% for filme in filmes_relacionados %}
+                <div class="movie-card">
+                    <a href="{% url 'filme:detalhesfilmes' filme.pk %}">
+                        <img src="{{ filme.thumb.url }}" alt="Filme Relacionado" class="movie-card-image">
+                        <h3 class="movie-card-title">{{ filme.titulo }}</h3>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+         {% endif %}
+        <form style="display: none;">{% csrf_token %}</form>
+    </main>
+{% endblock %}
