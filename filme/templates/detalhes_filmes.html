@@ -65,30 +65,45 @@
                 <div class="episodes-list">
                     {% for episodio in object.episodios.all %}
                     <div class="episode-card">
-                        <div class="thumbnail-wrapper">
-                            <img src="{{ episodio.thumb.url }}" alt="{{ episodio.titulo }}"
-                                 class="episode-thumbnail"
-                                 data-video-id="video-{{ episodio.id }}">
+                        <div class="thumbnail-wrapper"
+                             data-video-src="{% if episodio.video %}{{ episodio.video.url }}{% endif %}"
+                             data-episode-id="{{ episodio.id }}">
+
+                            <img src="{{ episodio.thumb.url }}" alt="{{ episodio.titulo }}" class="episode-thumbnail">
                             <div class="button-play">▶</div>
                         </div>
-
                         <div class="episode-card-content">
                             <h3 class="episode-title">{{ episodio.titulo }}</h3>
                             <p class="episode-description">{{ episodio.descricao }}</p>
-                            <div class="video-buttons">
-                              <button class="btn-like" aria-label="Curtir">
-                                <i class="fa-regular fa-thumbs-up"></i>
-                              </button>
 
-                              <button class="btn-dislike" aria-label="Não curtir">
-                                <i class="fa-regular fa-thumbs-down"></i>
-                              </button>
+
+
+                            <div class="video-buttons">
+                                {% csrf_token %}
+                            <button class="btn-like {% if request.user in episodio.usuarios_que_curtiram.all %}ativo{% endif %}"
+                                    data-episode-id="{{ episodio.id }}"
+                                    aria-label="Curtir">
+
+                                <i class="{% if request.user in episodio.usuarios_que_curtiram.all %}fa-solid{% else %}fa-regular{% endif %} fa-thumbs-up"></i>
+                            </button>
+
+                            <span id="like-count-{{ episodio.id }}">{{ episodio.total_likes }}</span>
+
+                                <button class="btn-dislike" data-episode-id="{{ episodio.id }}" aria-label="Não curtir">
+                                    <i class="fa-regular fa-thumbs-down"></i>
+                                </button>
 
                               <button class="btn-heart" aria-label="Favoritar">
                                 <i class="fa-regular fa-heart"></i>
                               </button>
-                              <h3>{{ episodio.visualizacoes }} Visualizacoes </h3>
+                              <h4 class= "count_views ">{{ episodio.visualizacoes }} Visualizacoes </h4>
+
+                              <button class="btn-star" aria-label="Favoritar">
+                                <i class="fa-regular fa-star"></i>
+                              </button>
+
                             </div>
+
 
                             {% if episodio.video %}
                             <video id="video-{{ episodio.id }}" class="video-player w-full rounded mt-4"
@@ -125,4 +140,41 @@
          {% endif %}
         <form style="display: none;">{% csrf_token %}</form>
     </main>
+    <div id="player-overlay" class="player-overlay-container">
+    <div class="meu-player-container">
+        <video id="meu-video" src=""></video>
+
+        <div class="meu-player-controls">
+            <div class="controls-left">
+                <button id="rewind-btn" class="control-btn" aria-label="Retroceder 10s">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+                <button id="play-pause-btn" class="control-btn" aria-label="Play/Pause">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button id="forward-btn" class="control-btn" aria-label="Avançar 10s">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
+                <div class="volume-container">
+                    <button id="mute-btn" class="control-btn" aria-label="Mudo">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                    <input type="range" id="volume-bar" class="volume-bar" value="1" min="0" max="1" step="0.01" />
+                </div>
+            </div>
+
+            <div class="controls-right">
+                <div class="time-display">
+                    <span id="current-time">00:00</span> / <span id="duration">00:00</span>
+                </div>
+                <button id="fullscreen-btn" class="control-btn" aria-label="Tela Cheia">
+                    <i class="fa-solid fa-expand"></i>
+                </button>
+            </div>
+        </div>
+
+        <input type="range" id="progress-bar" class="progress-bar" value="0" min="0" max="100" step="0.1" />
+    </div>
+    <button id="close-player-btn" class="close-player-btn">&times;</button>
+</div>
 {% endblock %}

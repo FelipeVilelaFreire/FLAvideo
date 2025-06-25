@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'filme',
-    'crispy_forms',
     'crispy_bootstrap5',
+    'crispy_forms',
+    'wsgiserver',
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

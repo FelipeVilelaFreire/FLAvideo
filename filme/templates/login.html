@@ -8,9 +8,7 @@ Login
 
 {% block content %}
 <style>
-    /* Custom styles for Django Crispy Forms fields.
-      This is the most direct way to style generated elements from within the template.
-    */
+    /* Custom styles for Django Crispy Forms fields */
     #div_id_username input,
     #div_id_password input {
         background-color: rgba(17, 24, 39, 0.5); /* bg-gray-900 with 50% opacity */
@@ -37,10 +35,10 @@ Login
     }
 </style>
 
-<main class="relative py-24 sm:py-32 bg-no-repeat bg-cover bg-center" style="background-image: url('{% static 'imagens/torcida_background.jpg' %}')">
+<main class="relative flex-grow bg-no-repeat bg-cover bg-center" style="background-image: url('{% static 'imagens/torcida_background.jpg' %}'); min-height: calc(100vh - 80px);">
     <div class="absolute inset-0 bg-black/70" aria-hidden="true"></div>
 
-    <div class="relative z-10 w-full max-w-lg mx-auto px-4 sm:px-0">
+    <div class="relative z-10 w-full max-w-lg mx-auto px-4 sm:px-0 py-24 sm:py-32">
         <div class="bg-black/80 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl shadow-red-500/20 px-8 py-10 md:px-12 md:py-12 transition-all duration-300 hover:shadow-red-500/40">
             <div class="text-center">
                 <h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
@@ -51,11 +49,9 @@ Login
 
             <form method="post" class="mt-8 space-y-6">
                 {% csrf_token %}
-
                 <fieldset>
                     {{ form|crispy }}
                 </fieldset>
-
                 <div>
                     <button class="w-full px-4 py-3 font-semibold text-white bg-red-600 rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-red-500 transform transition-transform duration-200 hover:scale-105 active:scale-95" type="submit">
                         Fazer Login
@@ -72,14 +68,13 @@ Login
         </div>
     </div>
 </main>
-
 <footer class="bg-black border-t border-gray-800/50">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
         <div class="flex flex-col md:flex-row justify-between items-center gap-y-4 md:gap-y-0 text-center">
             <p class="text-sm text-gray-400">© {% now "Y" %} FlaTV. Todos os direitos reservados.</p>
-            <p class="text-sm text-gray-500">Uma plataforma para torcedores.</p>
-            <p class="text-sm text-gray-400">Feito com Python (Django) & TailwindCSS</p>
-        </div>
+            <p class="text-sm text-gray-400">Uma plataforma para torcedores.</p>
+            <p class="text-sm text-gray-500">Feito para Python (Django) & TailwindCSS</p>
+</div>
     </div>
 </footer>
 {% endblock %}

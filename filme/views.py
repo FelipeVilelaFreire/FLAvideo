@@ -54,7 +54,6 @@ class Detalhesfilme(LoginRequiredMixin,DetailView):
         context["filmes_relacionados"] = filmes_relacionados
         return context
 
-
 class Pesquisa(LoginRequiredMixin,ListView):
     template_name = "pesquisa.html"
     model = Filme
@@ -87,30 +86,3 @@ class CriarConta(FormView):
         return reverse("filme:login")
 
 
-
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
-from .models import Episodio  # Importe o modelo Episodio
-
-
-@require_POST  # Garante que esta view só aceita requisições POST para segurança
-def registrar_visualizacao(request, pk):
-    """
-    Esta view recebe uma chamada AJAX para registrar uma visualização
-    em um episódio específico.
-    """
-    try:
-        # 1. Encontra o episódio no banco de dados pelo ID (pk)
-        episodio = Episodio.objects.get(pk=pk)
-
-        # 2. Incrementa o contador de visualizações do EPISÓDIO
-        episodio.visualizacoes += 1
-
-        # 3. Salva a alteração
-        episodio.save()
-
-        # 4. Retorna uma resposta JSON de sucesso (útil para depuração)
-        return JsonResponse({'status': 'ok', 'visualizacoes_episodio': episodio.visualizacoes})
-
-    except Episodio.DoesNotExist:
-        return JsonResponse({'status': 'error', 'message': 'Episódio não encontrado'}, status=404)

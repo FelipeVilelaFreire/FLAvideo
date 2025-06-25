@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.conf import settings
 
 # Create your models here.
 
@@ -41,25 +42,42 @@ class Filme(models.Model):
         visualizacoes = models.IntegerField(default=0)
         data_criacao = models.DateTimeField(default=timezone.now)
         campeao = models.BooleanField(default=False)
-
         def __str__(self):
             return self.titulo
 
+
 class Episodio(models.Model):
-    filme = models.ForeignKey("Filme",related_name="episodios",on_delete=models.CASCADE)
+    # --- Campos do Modelo ---
+    filme = models.ForeignKey("Filme", related_name="episodios", on_delete=models.CASCADE)
     titulo = models.CharField(max_length=100)
-    thumb = models.ImageField(upload_to='thumb_episodios',null=True, blank=True)
-    video = models.FileField(upload_to='videos/',null=True, blank=True)
+    thumb = models.ImageField(upload_to='thumb_episodios', null=True, blank=True)
+    video = models.FileField(upload_to='videos/', null=True, blank=True)
     link = models.URLField()
     descricao = models.TextField(max_length=1000)
     fases = models.CharField(max_length=50, choices=LISTA_FASES, default="Outros")
     visualizacoes = models.IntegerField(default=0)
-    #like = models.IntegerField(default=0)
-    #curtidas = models.IntegerField(default=0)
 
+    # --- Relacionamentos ManyToMany ---
+    usuarios_que_curtiram = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="episodios_curtidos", blank=True)
+    usuarios_deslikes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="episodios_deslike", blank=True)
+    usuarios_que_amaram = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="episodios_amados", blank=True)
+
+    # --- Propriedades Calculadas (FORMA CORRETA) ---
+    @property
+    def total_likes(self):
+        return self.usuarios_que_curtiram.count()
+
+    @property
+    def total_deslikes(self):
+        return self.usuarios_deslikes.count()
+
+    @property
+    def total_coracao(self):
+        return self.usuarios_que_amaram.count()
 
     def __str__(self):
-        return self.filme.titulo + " - " + self.titulo
+        return f"{self.filme.titulo} - {self.titulo}"
+
 
 class Usuario(AbstractUser):
     filmes_vistos = models.ManyToManyField("Filme")
