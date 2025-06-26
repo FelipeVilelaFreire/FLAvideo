@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66ef2c4b-707f-44e5-8787-a22381ef881d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/filme/registros.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FlaVideo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FlaVideo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filme/adicionais.txt" beforeDir="false" afterPath="$PROJECT_DIR$/filme/adicionais.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filme/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/filme/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filme/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/filme/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filme/templates/detalhes_filmes.html" beforeDir="false" afterPath="$PROJECT_DIR$/filme/templates/detalhes_filmes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filme/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/filme/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filme/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/filme/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filme/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/filme/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flavideo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/flavideo/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/detalhes_filme.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/detalhes_filme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/detalhes_filmes.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/detalhes_filmes.js" afterDir="false" />
-    </list>
+    <list default="true" id="66ef2c4b-707f-44e5-8787-a22381ef881d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -325,7 +309,7 @@
       <workItem from="1750788275872" duration="32000" />
       <workItem from="1750788321150" duration="402000" />
       <workItem from="1750794884585" duration="6398000" />
-      <workItem from="1750860230658" duration="7966000" />
+      <workItem from="1750860230658" duration="8300000" />
     </task>
     <servers />
   </component>
